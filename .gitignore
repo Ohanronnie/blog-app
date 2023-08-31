@@ -3,6 +3,7 @@
 /node_modules
 .env*
 .env
+uploads/*
 # Logs
 logs
 *.log
