@@ -3,9 +3,17 @@
 ## Overview
 
 This API provides the following functionality for user registration, authentication,
-and blog post management: - Register a new user - Login an existing user - Create a
-username for the user - Create a new blog post - Retrieve a blog post by author and
-post ID - Update a blog post - Delete a blog post - Upload an image - Get an image
+and blog post management:
+
+- Register a new user
+- Login an existing user
+- Create a username for the user
+- Create a new blog post
+- Retrieve a blog post by author and post ID
+- Update a blog post
+- Delete a blog post
+- Upload an image
+- Get an image
 
 ## Base URL
 
