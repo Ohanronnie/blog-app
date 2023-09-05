@@ -284,7 +284,9 @@ Please note that the following routes
 
 #### Success Response
 
-The image data is streamed to the user. Please make sure to replace
+The image data is streamed to the user.
+
+Please make sure to replace
 `your_jwt_secret_here`, `30d`, `example@example.com`, `password123`, `userID`,
 `jwt_access_token`, `user123`, `user_id`, `Blog Post Title`, `post_id`, `username`,
 `image url`, `code block url`, `date`, `post content`, `Updated content`, `Hello updated world`, `image path/filename`, and `image_path_or_url` with actual values when
