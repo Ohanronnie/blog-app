@@ -22,27 +22,36 @@ The base URL for all endpoints is: `http://localhost:3001/api`
 ## Environment Variables
 
 To configure the API, you can create a `.env` file in the root directory of your
-project. In this file, you should define the following environment variables: -
-`JWT_SECRET`: The JSON Web Token secret used for authentication. - `JWT_EXPIRES_IN`:
-The expiration date for JSON Web Tokens (JWT). Here's an example of how your `.env`
-file should look: `env JWT_SECRET=your_jwt_secret_here JWT_EXPIRES_IN=30d ` Ensure
-these environment variables are correctly configured in your `.env` file before
+project. In this file, you should define the following environment variables:
+
+- `JWT_SECRET`: The JSON Web Token secret used for authentication.
+- `JWT_EXPIRES_IN`: The expiration date for JSON Web Tokens (JWT).
+
+Here's an example of how your `.env`
+file should look: `JWT_SECRET=your_jwt_secret_here` `JWT_EXPIRES_IN=30d `
+
+Ensure these environment variables are correctly configured in your `.env` file before
 running the API.
 
 ## Authentication
 
 To access protected routes, include the JWT token in the Authorization header as
-follows: `Authorization: Bearer token` Please note that the following routes
+follows: `Authorization: Bearer token`
+
+Please note that the following routes
 **do not require** the JWT token in the Authorization header:
-`POST /auth/register/signup`
-`POST /auth/register/login`
+
+- `POST /auth/register/signup`
+- `POST /auth/register/login`
 
 ## Endpoints
 
 ### Register a New User
 
-**POST /auth/register/signup** - Register a new user with the provided Body containing
-email and password.
+**POST /auth/register/signup**
+
+- Register a new user with the provided body containing
+  email and password.
 
 #### Body
 
@@ -68,8 +77,10 @@ email and password.
 
 ### Login an Existing User
 
-**POST /auth/register/login** - Login an existing user with the provided Body containing
-email and password.
+**POST /auth/register/login**
+
+- Login an existing user with the provided Body containing
+  email and password.
 
 #### Body
 
@@ -95,8 +106,10 @@ email and password.
 
 ### Create a Username for the User
 
-**POST /auth/username** - Create or change a username for the user. This username can be
-associated with the user's blog posts. This route is protected by JWT authentication.
+**POST /auth/username**
+
+- Create or change a username for the user. This username can be
+  associated with the user's blog posts. This route is protected by JWT authentication.
 
 #### Body
 
@@ -122,8 +135,10 @@ associated with the user's blog posts. This route is protected by JWT authentica
 
 ### Create a New Blog Post
 
-**PUT /post/new** - Create a new blog post with the provided Body containing a title and
-content array according to the specified format.
+**PUT /post/new**
+
+- Create a new blog post with the provided Body containing a title and
+  content array according to the specified format.
 
 #### Body
 
@@ -177,8 +192,10 @@ content array according to the specified format.
 
 ### Retrieve a Blog Post by Author and Post ID
 
-**GET /post/get/:author/:postid** - Retrieve a blog post by author and post ID. This
-route does not require a JWT token.
+**GET /post/get/:author/:postid**
+
+- Retrieve a blog post by author and post ID. This
+  route does not require a JWT token.
 
 #### Success Response
 
@@ -195,8 +212,10 @@ route does not require a JWT token.
 
 ### Update a Blog Post
 
-**PUT /post/update/:postid** - Update a blog post with the provided Body containing new
-content. This route is protected by JWT authentication.
+**PUT /post/update/:postid**
+
+- Update a blog post with the provided Body containing new
+  content. This route is protected by JWT authentication.
 
 #### Body
 
@@ -227,8 +246,10 @@ content. This route is protected by JWT authentication.
 
 ### Delete a Blog Post
 
-**DELETE /post/delete/:postid** - Delete a blog post by post ID. This route is protected
-by JWT authentication.
+**DELETE /post/delete/:postid**
+
+- Delete a blog post by post ID. This route is protected
+  by JWT authentication.
 
 #### Success Response
 
@@ -238,9 +259,11 @@ by JWT authentication.
 
 ### Upload an Image
 
-**POST /post/upload** - Upload an image file with the name attribute set to "file" and
-the content type or enctype set to "multipart/form-data". This route only accepts
-image files (.jpg, .PNG, .gif).
+**POST /post/upload**
+
+- Upload an image file with the name attribute set to "file" and
+  the content type or enctype set to "multipart/form-data". This route only accepts
+  image files (.jpg, .PNG, .gif).
 
 #### Success Response
 
@@ -250,8 +273,10 @@ image files (.jpg, .PNG, .gif).
 
 ### Get an Image
 
-**GET /post/image/:image_path_or_url** - Retrieve an image by specifying its path or
-URL. This route does not require a JWT token.
+**GET /post/image/:image_path_or_url**
+
+- Retrieve an image by specifying its path or
+  URL. This route does not require a JWT token.
 
 #### Success Response
 
