@@ -24,11 +24,15 @@ The base URL for all endpoints is: `http://localhost:3001/api`
 To configure the API, you can create a `.env` file in the root directory of your
 project. In this file, you should define the following environment variables:
 
+- `MONGODB_URL`: Mongodb database url
 - `JWT_SECRET`: The JSON Web Token secret used for authentication.
 - `JWT_EXPIRES_IN`: The expiration date for JSON Web Tokens (JWT).
 
 Here's an example of how your `.env`
-file should look: `JWT_SECRET=your_jwt_secret_here` `JWT_EXPIRES_IN=30d `
+file should look:
+`MONGODB_URL=mongodb://localhost:27017/blog`
+`JWT_SECRET=your_jwt_secret_here`
+`JWT_EXPIRES_IN=30d `
 
 Ensure these environment variables are correctly configured in your `.env` file before
 running the API.
