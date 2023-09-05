@@ -154,7 +154,7 @@ Please note that the following routes
     },
     { "type": "image", "alt": "Image alt", "value": "image url"
     },
-    { "type": "code", "value": "code block url"
+    { "type": "code", "code": "code block url"
     },
     { "type": "url", "value": "Click me", "url": "https://google.com"
     }
@@ -178,7 +178,7 @@ Please note that the following routes
     },
     { "type": "span", "value": "Hello world" },
     { "type": "image", "alt": "Image alt", "value": "image url" },
-    { "type": "code", "value": "code block url" },
+    { "type": "code", "code": "code block url" },
     { "type": "url", "value": "Click me", "url": "https://google.com" }
   ]
 }
