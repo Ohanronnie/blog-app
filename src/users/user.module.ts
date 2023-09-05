@@ -29,7 +29,7 @@ import * as bcrypt from 'bcryptjs';
     JwtModule.registerAsync({
       useFactory: () => ({
         secret: process.env.JWT_SECRET,
-        signOptions: { expiresIn: '7d' },
+        signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
       }),
     }),
   ],

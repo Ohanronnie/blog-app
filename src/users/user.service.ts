@@ -47,11 +47,12 @@ export class UserService {
     let user = await this.userModel.findOne({ email });
     if (user) return 'exist';
     let newUser = new this.userModel({ email, password: password });
-    return newUser.save();
+    const createdUser = await newUser.save();
+    return { id: createdUser._id };
   }
   async createJwt(user: any) {
     const payload = { email: user.email, id: user.id || user._id };
-    return this.jwtService.sign(payload);
+    return { token: this.jwtService.sign(payload) };
   }
   async createUsername(userDetails: IUser, usernameDetails: ICreateUsername) {
     const { password, username } = usernameDetails;
@@ -60,7 +61,13 @@ export class UserService {
     let comparedPass = bcrypt.compareSync(password, user.password);
     if (!comparedPass) return new UnauthorizedException('Incorrect Password');
     await this.blogService.changeUsername(user.username, username);
-    return await this.userModel.findOneAndUpdate({ email }, { username });
+    const updated = await this.userModel.findOneAndUpdate(
+      { email },
+      { username },
+    );
+    return {
+      id: updated._id,
+    };
   }
   async getUsernameWithEmail(email: string) {
     return (await this.userModel.findOne({ email }).select('username'))

@@ -16,6 +16,7 @@ import {
   UploadedFile,
   ParseFilePipeBuilder,
   UnsupportedMediaTypeException,
+  StreamableFile,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -24,6 +25,7 @@ import { BlogService } from '../blog.service';
 import { IUser, User } from '../../users/utils/user.decorator';
 import { diskStorage } from 'multer';
 import * as path from 'path';
+import { createReadStream } from 'fs';
 @Controller('post')
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
@@ -88,6 +90,7 @@ export class BlogController {
     }
   }
   @Post('upload')
+  @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -119,5 +122,11 @@ export class BlogController {
       statusCode: HttpStatus.OK,
       path: file.filename,
     };
+  }
+  @Get('image/:path')
+  sendImage(@Param('path') location: string) {
+    return new StreamableFile(
+      createReadStream(path.join(process.cwd(), 'uploads', location)),
+    );
   }
 }

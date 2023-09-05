@@ -8,6 +8,8 @@ import {
   UseGuards,
   Redirect,
   Res,
+  Query,
+  HttpException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
@@ -31,37 +33,24 @@ export class UserController {
     if (user === 'exist') throw new BadRequestException('Email already exist.');
     return user;
   }
-  @Post('')
-  @UseGuards(AuthGuard('jwt'))
-  @Redirect('/auth/home')
-  getUser(@Req() req: Request) {
-    console.log(req.user);
-  }
-  @Get('google/login')
+  // Uncomment the following lines to add google oauth route
+
+  /*  @Get('google/login')
   @UseGuards(AuthGuard('google'))
   googleAuth() {}
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
-  @Redirect('/auth/home')
-  getGoogle(@Req() req: Request) {
-    console.log(req.user);
-  }
+  getGoogle(@Req() res: Request, @Query() query: any, @Body() body: any ) {
+    console.log(res, query, body)
+  }*/
   @Post('/username')
   @UseGuards(AuthGuard('jwt'))
-  changeUsername(
+  async changeUsername(
     @User() user: IUser,
     @Body() changeUserDto: CreateUsernameDto,
   ) {
-    console.log(user);
-    return this.userService.createUsername(user, changeUserDto);
-  }
-  @Get('home')
-  home(@Req() req: Request, @Res() res: Response) {
-    console.log(req.user);
-    res.set('location', 'null');
-    res.send('67');
-    res.send('32');
-    res.end();
-    return 'Hello from home';
+    const username = await this.userService.createUsername(user, changeUserDto);
+    if (username instanceof HttpException) throw username;
+    return username;
   }
 }
